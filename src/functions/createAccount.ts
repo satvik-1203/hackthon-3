@@ -16,6 +16,7 @@ const createAccount = async (): Promise<void> => {
         .trim();
       if (answer) userDetails.push(answer);
     }
+    console.log();
     let [name, email, password] = userDetails;
     const saltRound = process.env["HashLength"];
     if (!saltRound) return console.log("No Hash Length");
@@ -32,13 +33,13 @@ const createAccount = async (): Promise<void> => {
     if (!Users) return;
     const exist = Users.find((user) => user.email === email);
     if (exist) {
-      console.log("Email already exist, Please try again...");
+      console.log("Email already exist, Please try again...\n");
       createAccount();
       return;
     }
     Users.push(userInfo);
     await writeFile(dataBase, JSON.stringify(Users));
-    console.log("User account created in the database");
+    console.log("User account created in the database ");
   } catch (err) {
     console.error(err);
   }

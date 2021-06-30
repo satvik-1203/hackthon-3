@@ -1,8 +1,1 @@
-[
-  {
-    "name": "satvik",
-    "email": "visedtooth28@gmail.com",
-    "password": "$2b$10$pGmNDrS1t7uex7uc6tCaCOnxiUM8TcK5CteFPx6o8aKDoUzPX98aW",
-    "todo": ["first todo"]
-  }
-]
+[{"name":"name","email":"email","password":"$2b$10$Sl7No0tFV50vC3K7xDwYhOzMbGw53H.M/gQjoFSPrSzitfn5D3O5.","todo":["first todo","cool"]}]

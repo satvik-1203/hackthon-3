@@ -9,6 +9,7 @@ const addTodo = async (): Promise<void> => {
   try {
     const Users = await readDB();
     const token = readlineSync.question("Please enter your token: ");
+    console.log();
     const signature = process.env["JWT-SIGN"];
     if (!signature) return console.log("No jwt signature");
     const payload: any = jwt.verify(token, signature);
@@ -18,9 +19,11 @@ const addTodo = async (): Promise<void> => {
     const index = Users.findIndex((user) => user.email === payload.email);
 
     const todo = readlineSync.question("Enter a todo you want to add: ");
+    console.log();
 
     Users[index].todo?.push(todo);
     await writeFile(dataBase, JSON.stringify(Users));
+    console.log("Todo added in the db");
   } catch (err) {
     console.log("Invalid token");
   }

@@ -1,21 +1,20 @@
-import { IUser } from "../interface";
 import readlineSync from "readline-sync";
-import { dataBase } from "../BASEURL";
-import { readFile } from "fs/promises";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { readDB } from "../misc";
 require("dotenv").config();
 
 const login = async (): Promise<void> => {
   try {
-    const Users: IUser[] = JSON.parse(await readFile(dataBase, "utf-8"));
+    const Users = await readDB();
+    if (!Users) return;
     const email: string = readlineSync.question("Please enter your email: ");
 
     const user = Users.find((user) => user.email === email);
     const password: string = readlineSync.question(
       "Please enter your password: "
     );
-
+    console.log();
     if (!user) {
       console.log("No User found in the db, Please try again: ");
       return login();
@@ -28,7 +27,7 @@ const login = async (): Promise<void> => {
     const token = jwt.sign({ email: user.email }, jwtSign, { expiresIn: "1h" });
     console.log(`The user token is: ${token}`);
   } catch (err) {
-    return console.log("Couldn't read the file");
+    return console.log("Something went wrong");
   }
 };
 
