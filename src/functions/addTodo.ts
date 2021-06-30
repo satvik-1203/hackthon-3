@@ -2,7 +2,7 @@ import readlineSync from "readline-sync";
 import jwt from "jsonwebtoken";
 import { readDB } from "../misc";
 import { writeFile } from "fs/promises";
-import { dataBase } from "../BASEURl";
+import { dataBase } from "../BASEURL";
 require("dotenv").config();
 
 const addTodo = async (): Promise<void> => {

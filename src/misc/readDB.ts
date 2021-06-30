@@ -1,6 +1,6 @@
 import { IUser } from "../interface";
 import { readFile } from "fs/promises";
-import { dataBase } from "../BASEURl";
+import { dataBase } from "../BASEURL";
 export default async (): Promise<void | IUser[]> => {
   try {
     const data = await readFile(dataBase, "utf-8");

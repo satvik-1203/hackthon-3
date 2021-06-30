@@ -1,6 +1,6 @@
 import { IUser } from "../interface";
 import readlineSync from "readline-sync";
-import { dataBase } from "../BASEURl";
+import { dataBase } from "../BASEURL";
 import { readFile } from "fs/promises";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";

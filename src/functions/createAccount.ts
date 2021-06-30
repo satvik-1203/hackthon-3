@@ -2,7 +2,7 @@ import readline from "readline-sync";
 import { IUser } from "../interface";
 import { readDB } from "../misc";
 import { writeFile } from "fs/promises";
-import { dataBase } from "../BASEURl";
+import { dataBase } from "../BASEURL";
 import bcrypt from "bcrypt";
 require("dotenv").config();
 
@@ -19,7 +19,7 @@ const createAccount = async (): Promise<void> => {
     let [name, email, password] = userDetails;
     const saltRound = process.env["HashLength"];
     if (!saltRound) return console.log("No Hash Length");
-    password = await bcrypt.hash(password, saltRound);
+    password = await bcrypt.hash(password, +saltRound);
 
     const userInfo: IUser = {
       name,
