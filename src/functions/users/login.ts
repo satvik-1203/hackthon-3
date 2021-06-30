@@ -1,23 +1,23 @@
 import readlineSync from "readline-sync";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { readDB } from "../misc";
+import { readDB } from "../../misc";
 require("dotenv").config();
 
 const login = async (): Promise<void> => {
   try {
     const Users = await readDB();
     if (!Users) return;
-    const email: string = readlineSync.question("Please enter your email: ");
+    const email = readlineSync.question("Please enter your email: ");
 
     const user = Users.find((user) => user.email === email);
-    const password: string = readlineSync.question(
-      "Please enter your password: "
-    );
+    const password = readlineSync.question("Please enter your password: ", {
+      hideEchoBack: true,
+    });
     console.log();
     if (!user) {
       console.log("No User found in the db, Please try again: ");
-      return login();
+      return await login();
     }
 
     const verify = await bcrypt.compare(password, user.password);

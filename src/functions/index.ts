@@ -1,4 +1,3 @@
-import createAccount from "./createAccount";
-import login from "./login";
-import addTodo from "./addTodo";
-export { createAccount, login, addTodo };
+import userFunc from "./users";
+import todoFunc from "./todo";
+export { userFunc, todoFunc };

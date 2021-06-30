@@ -1,26 +1,23 @@
-import readline from "readline-sync";
-import { IUser } from "../interface";
-import { readDB } from "../misc";
+import { IUser } from "../../interface";
+import { readDB, signUpInputs, writeDB } from "../../misc";
 import { writeFile } from "fs/promises";
-import { dataBase } from "../BASEURL";
+import { dataBase } from "../../BASEURL";
 import bcrypt from "bcrypt";
 require("dotenv").config();
 
 const createAccount = async (): Promise<void> => {
   try {
-    const labels = ["Name", "Email", "Password"];
-    const userDetails: string[] = [];
-    while (userDetails.length < labels.length) {
-      const answer = readline
-        .question(`Enter your ${labels[userDetails.length]}: `)
-        .trim();
-      if (answer) userDetails.push(answer);
+    let { name, email, password, confirmPassword } = signUpInputs();
+    if (password !== confirmPassword) {
+      console.log("\nPasswords don't match!!\n");
+      return await createAccount();
     }
     console.log();
-    let [name, email, password] = userDetails;
+
     const saltRound = process.env["HashLength"];
     if (!saltRound) return console.log("No Hash Length");
-    password = await bcrypt.hash(password, +saltRound);
+    const salt = await bcrypt.genSalt(+saltRound);
+    password = await bcrypt.hash(password, salt);
 
     const userInfo: IUser = {
       name,
@@ -30,15 +27,16 @@ const createAccount = async (): Promise<void> => {
     };
 
     const Users = await readDB();
+
     if (!Users) return;
+
     const exist = Users.find((user) => user.email === email);
     if (exist) {
       console.log("Email already exist, Please try again...\n");
-      createAccount();
-      return;
+      return await createAccount();
     }
     Users.push(userInfo);
-    await writeFile(dataBase, JSON.stringify(Users));
+    await writeDB(Users);
     console.log("User account created in the database ");
   } catch (err) {
     console.error(err);

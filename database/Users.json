@@ -1,1 +1,8 @@
-[{"name":"name","email":"email","password":"$2b$10$Sl7No0tFV50vC3K7xDwYhOzMbGw53H.M/gQjoFSPrSzitfn5D3O5.","todo":["first todo","cool"]}]
+[
+  {
+    "name": "name",
+    "email": "email",
+    "password": "$2b$10$Sl7No0tFV50vC3K7xDwYhOzMbGw53H.M/gQjoFSPrSzitfn5D3O5.",
+    "todo": ["first todo", "cool"]
+  }
+]
