@@ -1,8 +1,11 @@
-import { createAccount } from "../functions";
+import { createAccount, login } from "../functions";
 
 export default async (optionNo: number): Promise<void> => {
   switch (optionNo) {
     case 1:
-      createAccount();
+      return createAccount();
+
+    case 2:
+      return login();
   }
 };

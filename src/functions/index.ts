@@ -1,3 +1,3 @@
 import createAccount from "./createAccount";
-
-export { createAccount };
+import login from "./login";
+export { createAccount, login };

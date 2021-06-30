@@ -1,12 +1,13 @@
 import readline from "readline-sync";
 import { IUser } from "../interface";
 import { readDB } from "../misc";
-import { readFile, writeFile } from "fs/promises";
+import { writeFile } from "fs/promises";
+import { dataBase } from "../BASEURl";
 import bcrypt from "bcrypt";
+require("dotenv").config();
 
 const createAccount = async (): Promise<void> => {
   try {
-    const url = "database/Users.json";
     const labels = ["Name", "Email", "Password"];
     const userDetails: string[] = [];
     while (userDetails.length < labels.length) {
@@ -16,8 +17,9 @@ const createAccount = async (): Promise<void> => {
       if (answer) userDetails.push(answer);
     }
     let [name, email, password] = userDetails;
-
-    password = await bcrypt.hash(password, 10);
+    const saltRound = process.env["HashLength"];
+    if (!saltRound) return console.log("No Hash Length");
+    password = await bcrypt.hash(password, saltRound);
 
     const userInfo: IUser = {
       name,
@@ -35,10 +37,8 @@ const createAccount = async (): Promise<void> => {
       return;
     }
     Users.push(userInfo);
-
-    await writeFile(url, JSON.stringify(Users)).catch((err) =>
-      console.log(err)
-    );
+    await writeFile(dataBase, JSON.stringify(Users));
+    console.log("User account created in the database");
   } catch (err) {
     console.error(err);
   }
