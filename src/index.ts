@@ -7,12 +7,11 @@ async function main() {
   try {
     let optionNo = option();
     if (optionNo === 0) return console.log("Exiting...");
-    response(optionNo).then(() => {
-      const again = readlineSync.keyInYNStrict("\nDo you want to continue: ");
-      if (again) {
-        main();
-      }
-    });
+    await response(optionNo);
+    const again = readlineSync.keyInYNStrict("\nDo you want to continue: ");
+    if (again) {
+      main();
+    }
   } catch (err) {
     main();
   }

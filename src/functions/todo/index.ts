@@ -1,3 +1,4 @@
 import addTodo from "./addTodo";
 import displayTodo from "./displayTodo";
-export default { addTodo, displayTodo };
+import deleteTodo from "./deleteTodo";
+export default { addTodo, displayTodo, deleteTodo };

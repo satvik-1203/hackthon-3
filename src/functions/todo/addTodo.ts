@@ -1,6 +1,6 @@
 import readlineSync from "readline-sync";
 import jwt from "jsonwebtoken";
-import { readDB } from "../../misc";
+import { readDB, writeDB } from "../../misc";
 import { writeFile } from "fs/promises";
 import { dataBase } from "../../BASEURL";
 require("dotenv").config();
@@ -22,7 +22,7 @@ const addTodo = async (): Promise<void> => {
     console.log();
 
     Users[index].todo?.push(todo);
-    await writeFile(dataBase, JSON.stringify(Users));
+    await writeDB(Users);
     console.log("Todo added in the db");
   } catch (err) {
     console.log("Invalid token");

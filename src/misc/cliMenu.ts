@@ -4,6 +4,7 @@ export default (): void => {
     "Create Account",
     "Login",
     "Add Todo",
+    "Delete Todo",
     "View Todo List",
   ];
   console.log("Welcome to my todo list cli\n");

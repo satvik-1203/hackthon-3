@@ -5,6 +5,6 @@ export default (): number => {
     "Choose an options from the following: "
   );
   console.log();
-  if (answer < 0 || answer > 4) throw "";
+  if (answer < 0 || answer > 5) throw "";
   return answer;
 };
