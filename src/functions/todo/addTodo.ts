@@ -1,31 +1,36 @@
 import readlineSync from "readline-sync";
 import jwt from "jsonwebtoken";
-import { readDB, writeDB } from "../../misc";
-import { writeFile } from "fs/promises";
-import { dataBase } from "../../BASEURL";
+import { readDB, verifyJWT, writeDB } from "../../misc";
+import { v4 as uuid } from "uuid";
 require("dotenv").config();
 
 const addTodo = async (): Promise<void> => {
   try {
-    const Users = await readDB();
     const token = readlineSync.question("Please enter your token: ");
     console.log();
     const signature = process.env["JWT-SIGN"];
     if (!signature) return console.log("No jwt signature");
-    const payload: any = jwt.verify(token, signature);
-
-    if (!Users) return console.log("Couldn't read the db");
+    const payload: any = verifyJWT(token);
+    if (!payload) return;
+    const Users = await readDB();
+    if (!Users) return;
 
     const index = Users.findIndex((user) => user.email === payload.email);
 
+    if (index === -1) return console.log("No user in the db");
+
     const todo = readlineSync.question("Enter a todo you want to add: ");
     console.log();
-
-    Users[index].todo?.push(todo);
+    if (!Users[index].todo) Users[index].todo = [];
+    const id = uuid();
+    Users[index].todo?.push({
+      id,
+      todo,
+    });
     await writeDB(Users);
-    console.log("Todo added in the db");
+    console.log("Todo added in the db, with id " + id);
   } catch (err) {
-    console.log("Invalid token");
+    console.log(err.message);
   }
 };
 export default addTodo;

@@ -1,14 +1,8 @@
 [
   {
     "name": "satvik",
-    "email": "email@gmail.com",
-    "password": "$2b$10$0Zr222w/eiWPrWbjcYuN1Og3WJ970QgNr4xnhQGuM31GnAxpgFqci",
-    "todo": []
-  },
-  {
-    "name": "name",
-    "email": "email",
-    "password": "$2b$10$Sl7No0tFV50vC3K7xDwYhOzMbGw53H.M/gQjoFSPrSzitfn5D3O5.",
-    "todo": ["first todo", "new todo", "cool"]
+    "email": "email@email.com",
+    "password": "$2b$10$aj4U2Tf2cWInZph9tTC6Bei5oeX.msRtxFjDSPKr1qbbTazspX1Je",
+    "todo": [{ "id": "01ed4dbd-0060-478a-b6ab-3431c05940d0", "todo": "cool" }]
   }
 ]

@@ -4,7 +4,7 @@ import { readDB } from "../../misc";
 import { IUser } from "../../interface";
 require("dotenv").config();
 
-export default async (token?: string): Promise<void | [IUser[], number]> => {
+export default async (token?: string): Promise<void> => {
   try {
     if (!token) {
       token = readlineSync.question("Please enter your token: ");
@@ -16,12 +16,11 @@ export default async (token?: string): Promise<void | [IUser[], number]> => {
     if (!Users) return console.log("No users");
     const userIndex = Users.findIndex((obj) => obj.email === payload.email);
 
-    if (!userIndex) return console.log("No user found in the db");
     console.log("\n");
-    Users[userIndex].todo.forEach((task, index) =>
-      console.log(`${index + 1}) ${task}`)
+    if (!Users[userIndex].todo) return console.log("The user has no todo");
+    Users[userIndex].todo?.forEach((task, index) =>
+      console.log(`Todo ${index + 1} "${task.todo}" with id of ${task.id}`)
     );
-    return [Users, userIndex];
   } catch (err) {
     console.log("Invalid token");
   }
