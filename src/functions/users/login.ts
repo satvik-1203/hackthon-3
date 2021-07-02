@@ -17,14 +17,16 @@ const login = async (): Promise<void> => {
     console.log();
     if (!user) {
       console.log("No User found in the db, Please try again: ");
-      return await login();
+      return login();
     }
 
     const verify = await bcrypt.compare(password, user.password);
     if (!verify) return console.log("Invalid credentials");
     const jwtSign = process.env["JWT-SIGN"];
     if (!jwtSign) return console.log("No jwt sign available");
-    const token = jwt.sign({ email: user.email }, jwtSign, { expiresIn: "1h" });
+    const token = jwt.sign({ email: user.email }, jwtSign, {
+      expiresIn: "1h",
+    });
     console.log(`The user token is: ${token}`);
   } catch (err) {
     return console.log("Something went wrong");

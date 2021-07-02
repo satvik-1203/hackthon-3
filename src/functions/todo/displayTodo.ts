@@ -4,7 +4,7 @@ import { readDB } from "../../misc";
 import { IUser } from "../../interface";
 require("dotenv").config();
 
-export default async (token?: string): Promise<void | [IUser[], IUser]> => {
+export default async (token?: string): Promise<void | [IUser[], number]> => {
   try {
     if (!token) {
       token = readlineSync.question("Please enter your token: ");
@@ -14,12 +14,14 @@ export default async (token?: string): Promise<void | [IUser[], IUser]> => {
     const payload: any = jwt.verify(token, signature);
     const Users = await readDB();
     if (!Users) return console.log("No users");
-    const user = Users.find((obj) => obj.email === payload.email);
+    const userIndex = Users.findIndex((obj) => obj.email === payload.email);
 
-    if (!user) return console.log("No user found in the db");
+    if (!userIndex) return console.log("No user found in the db");
     console.log("\n");
-    user.todo.forEach((task, index) => console.log(`${index + 1}) ${task}`));
-    return [Users, user];
+    Users[userIndex].todo.forEach((task, index) =>
+      console.log(`${index + 1}) ${task}`)
+    );
+    return [Users, userIndex];
   } catch (err) {
     console.log("Invalid token");
   }

@@ -13,10 +13,11 @@ export default async () => {
     const userArr = await displayTodo(token);
     const number = readlineSync.questionInt("Which todo do u want to delete: ");
     if (!userArr) return console.log("Something went wrong");
-    let [Users, user] = userArr;
-    user.todo = user.todo.filter((todo, index) => index + 1 !== number);
+    let [Users, index] = userArr;
+    Users[index].todo = Users[index].todo.filter(
+      (todo, index) => index + 1 !== number
+    );
     Users = Users.filter((User) => User.email != payload.email);
-    Users.push(user);
     await writeDB(Users);
     console.log("\nDeleted the todo");
   } catch (err) {

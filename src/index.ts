@@ -1,6 +1,5 @@
 import { cliMenu, option, response } from "./misc";
 import readlineSync from "readline-sync";
-
 async function main() {
   console.clear();
   cliMenu();

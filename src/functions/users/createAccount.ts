@@ -10,7 +10,7 @@ const createAccount = async (): Promise<void> => {
     let { name, email, password, confirmPassword } = signUpInputs();
     if (password !== confirmPassword) {
       console.log("\nPasswords don't match!!\n");
-      return await createAccount();
+      return createAccount();
     }
     console.log();
 
@@ -33,7 +33,7 @@ const createAccount = async (): Promise<void> => {
     const exist = Users.find((user) => user.email === email);
     if (exist) {
       console.log("Email already exist, Please try again...\n");
-      return await createAccount();
+      return createAccount();
     }
     Users.push(userInfo);
     await writeDB(Users);

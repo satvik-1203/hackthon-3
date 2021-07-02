@@ -1,1 +1,14 @@
-[{"name":"satvik","email":"email@gmail.com","password":"$2b$10$0Zr222w/eiWPrWbjcYuN1Og3WJ970QgNr4xnhQGuM31GnAxpgFqci","todo":[]},{"name":"name","email":"email","password":"$2b$10$Sl7No0tFV50vC3K7xDwYhOzMbGw53H.M/gQjoFSPrSzitfn5D3O5.","todo":["first todo","new todo","cool"]}]
+[
+  {
+    "name": "satvik",
+    "email": "email@gmail.com",
+    "password": "$2b$10$0Zr222w/eiWPrWbjcYuN1Og3WJ970QgNr4xnhQGuM31GnAxpgFqci",
+    "todo": []
+  },
+  {
+    "name": "name",
+    "email": "email",
+    "password": "$2b$10$Sl7No0tFV50vC3K7xDwYhOzMbGw53H.M/gQjoFSPrSzitfn5D3O5.",
+    "todo": ["first todo", "new todo", "cool"]
+  }
+]
