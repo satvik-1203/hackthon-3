@@ -82,7 +82,7 @@ Option 7:
 Update Todo
 ```
 Token:
-Token ID:
+Todo ID:
 
 -> Updates the todo in the user's todo list
 ```
