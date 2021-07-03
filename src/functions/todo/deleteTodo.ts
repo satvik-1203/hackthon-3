@@ -6,10 +6,7 @@ require("dotenv").config();
 
 export default async () => {
   try {
-    const token = readlineSync.question("Enter your token: ");
-    const signature = process.env["JWT-SIGN"];
-    if (!signature) return console.log("No signature.");
-    const payload: any = verifyJWT(token);
+    const payload: any = verifyJWT();
     if (!payload) return;
     const Users = await readDB();
     if (!Users) return;
@@ -28,6 +25,6 @@ export default async () => {
     await writeDB(Users);
     console.log("\nDeleted the todo");
   } catch (err) {
-    console.log("err.message");
+    console.log(err.message);
   }
 };

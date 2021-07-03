@@ -15,10 +15,7 @@ const login = async (): Promise<void> => {
       hideEchoBack: true,
     });
     console.log();
-    if (!user) {
-      console.log("No User found in the db, Please try again: ");
-      return login();
-    }
+    if (!user) return console.log("Invalid credentials");
 
     const verify = await bcrypt.compare(password, user.password);
     if (!verify) return console.log("Invalid credentials");

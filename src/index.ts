@@ -12,7 +12,8 @@ async function main() {
       main();
     }
   } catch (err) {
-    main();
+    console.log("Invalid option, Please try again...");
+    setTimeout(main, 2000);
   }
 }
 main();

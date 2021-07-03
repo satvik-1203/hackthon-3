@@ -3,8 +3,11 @@ export default (): void => {
     "Exit",
     "Create Account",
     "Login",
+    "Delete Account",
+    "Select a Todo",
     "Add Todo",
     "Delete Todo",
+    "Update Todo",
     "View Todo List",
   ];
   console.log("Welcome to my todo list cli\n");

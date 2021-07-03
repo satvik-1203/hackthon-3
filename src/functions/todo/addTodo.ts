@@ -6,11 +6,8 @@ require("dotenv").config();
 
 const addTodo = async (): Promise<void> => {
   try {
-    const token = readlineSync.question("Please enter your token: ");
     console.log();
-    const signature = process.env["JWT-SIGN"];
-    if (!signature) return console.log("No jwt signature");
-    const payload: any = verifyJWT(token);
+    const payload: any = verifyJWT();
     if (!payload) return;
     const Users = await readDB();
     if (!Users) return;

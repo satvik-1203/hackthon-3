@@ -1,4 +1,4 @@
 import createAccount from "./createAccount";
 import login from "./login";
-
-export default { createAccount, login };
+import deleteUser from "./deleteUser";
+export default { createAccount, login, deleteUser };
