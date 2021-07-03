@@ -1,4 +1,4 @@
-import { IUser } from "interface";
+import { IUser } from "../interface";
 import { writeFile } from "fs/promises";
 import { dataBase } from "../BASEURL";
 

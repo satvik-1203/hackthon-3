@@ -1,6 +1,6 @@
 import { userFunc, todoFunc } from "../functions";
-const { createAccount, login } = userFunc;
-const { addTodo, displayTodo, deleteTodo } = todoFunc;
+const { createAccount, login, deleteUser } = userFunc;
+const { addTodo, displayTodo, deleteTodo, updateTodo, selectTodo } = todoFunc;
 
 export default async (optionNo: number): Promise<void> => {
   console.clear();
@@ -10,11 +10,16 @@ export default async (optionNo: number): Promise<void> => {
     case 2:
       return await login();
     case 3:
-      return await addTodo();
+      return await deleteUser();
     case 4:
-      return await deleteTodo();
+      return await selectTodo();
     case 5:
-      await displayTodo();
-      return;
+      return await addTodo();
+    case 6:
+      return await deleteTodo();
+    case 7:
+      return await updateTodo();
+    case 8:
+      return await displayTodo();
   }
 };
