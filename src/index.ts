@@ -8,12 +8,14 @@ async function main() {
     let optionNo = option();
     if (optionNo === 0) return console.log(chalk.magenta("Exiting..."));
     await response(optionNo);
-    const again = readlineSync.keyInYNStrict("\nDo you want to continue: ");
+    const again = readlineSync.keyInYNStrict(
+      chalk.cyan.bold("\nDo you want to continue: ")
+    );
     if (again) {
       main();
     }
   } catch (err) {
-    console.log("Invalid option, Please try again...");
+    console.log(chalk.red.bold("Invalid option, Please try again..."));
     setTimeout(main, 2000);
   }
 }
