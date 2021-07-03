@@ -1,6 +1,7 @@
 import { IUser } from "../interface";
 import { readFile } from "fs/promises";
 import { dataBase } from "../BASEURL";
+import chalk from "chalk";
 export default async (): Promise<void | IUser[]> => {
   try {
     const data = await readFile(dataBase, "utf-8");
@@ -8,7 +9,7 @@ export default async (): Promise<void | IUser[]> => {
     const Users: IUser[] = JSON.parse(data);
     return Users;
   } catch (err) {
-    console.log("Couldn't read the file");
+    console.log(chalk.red("Couldn't read the file"));
     return;
   }
 };

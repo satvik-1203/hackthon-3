@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import { readDB, verifyJWT, writeDB } from "../../misc";
 
 export default async () => {
@@ -8,10 +9,10 @@ export default async () => {
     if (!Users) return;
     const filterUsers = Users.filter((user) => user.email !== payload.email);
     if (filterUsers.length === Users.length)
-      return console.log("No user found in the db");
+      return console.log(chalk.red.bold("No user found in the db"));
     await writeDB(filterUsers);
-    console.log("Deleted the user in the db");
+    console.log(chalk.magenta("Deleted the user in the db"));
   } catch (err) {
-    console.log(err.message);
+    console.log(chalk.red(err.message));
   }
 };

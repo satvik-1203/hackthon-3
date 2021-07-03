@@ -1,12 +1,13 @@
 import { verifyJWT, readDB, writeDB } from "../../misc";
 import readlineSync from "readline-sync";
+import chalk from "chalk";
 
 export default async () => {
   try {
     const payload = verifyJWT();
     if (!payload) return;
     const id = readlineSync.question(
-      "Please enter the id of the todo that you want to see: "
+      chalk.blue("Please enter the id of the todo that you want to see: ")
     );
     console.log();
     const Users = await readDB();
@@ -14,9 +15,9 @@ export default async () => {
     const userIndex = Users.findIndex((user) => user.email === payload.email);
     const user = Users[userIndex];
     const todo = user.todo?.find((todo) => todo.id === id);
-    if (!todo) return console.log("No todo found with that id");
-    console.log(todo.todo);
+    if (!todo) return console.log(chalk.red("No todo found with that id"));
+    console.log(chalk.magenta(todo.todo));
   } catch (err) {
-    console.log(err.message);
+    console.log(chalk.red.bold(err.message));
   }
 };

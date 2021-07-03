@@ -1,26 +1,26 @@
+import chalk from "chalk";
 import readlineSync from "readline-sync";
-import jwt from "jsonwebtoken";
-import { readDB } from "../../misc";
+import { readDB, verifyJWT } from "../../misc";
 
 require("dotenv").config();
 
 export default async (): Promise<void> => {
   try {
-    const token = readlineSync.question("Please enter your token: ");
-
-    const signature = process.env["JWT-SIGN"];
-    if (!signature) return console.log("No signature");
-    const payload: any = jwt.verify(token, signature);
+    const payload = verifyJWT();
+    if (!payload) return;
     const Users = await readDB();
-    if (!Users) return console.log("No users");
+    if (!Users) return console.log(chalk.red.bold("No users"));
     const userIndex = Users.findIndex((obj) => obj.email === payload.email);
 
     console.log("\n");
-    if (!Users[userIndex].todo) return console.log("The user has no todo");
+    if (!Users[userIndex].todo)
+      return console.log(chalk.redBright("The user has no todo"));
     Users[userIndex].todo?.forEach((task, index) =>
-      console.log(`Todo ${index + 1} "${task.todo}" with id of ${task.id}`)
+      console.log(
+        chalk.magenta(`Todo ${index + 1} "${task.todo}" with id of ${task.id}`)
+      )
     );
   } catch (err) {
-    console.log(err.message);
+    console.log(chalk.red(err.message));
   }
 };
