@@ -1,15 +1,14 @@
 import { IUser } from "../../interface";
 import { readDB, signUpInputs, writeDB } from "../../misc";
-import { writeFile } from "fs/promises";
-import { dataBase } from "../../BASEURL";
 import bcrypt from "bcrypt";
+import chalk from "chalk";
 require("dotenv").config();
 
 const createAccount = async (): Promise<void> => {
   try {
     let { name, email, password, confirmPassword } = signUpInputs();
     if (password !== confirmPassword) {
-      console.log("\nPasswords don't match!!\n");
+      console.log(chalk.red.bold("\nPasswords don't match!!, Try again\n"));
       return createAccount();
     }
     console.log();
@@ -23,7 +22,6 @@ const createAccount = async (): Promise<void> => {
       name,
       email,
       password,
-      todo: [],
     };
 
     const Users = await readDB();
@@ -32,14 +30,14 @@ const createAccount = async (): Promise<void> => {
 
     const exist = Users.find((user) => user.email === email);
     if (exist) {
-      console.log("Email already exist, Please try again...\n");
+      console.log(chalk.red.bold("Email already exist, Please try again...\n"));
       return createAccount();
     }
     Users.push(userInfo);
     await writeDB(Users);
-    console.log("User account created in the database ");
+    console.log(chalk.magenta("User account created in the database "));
   } catch (err) {
-    console.error(err);
+    console.error(chalk.red.bold(err));
   }
 };
 

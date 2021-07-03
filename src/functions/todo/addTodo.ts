@@ -1,7 +1,7 @@
 import readlineSync from "readline-sync";
-import jwt from "jsonwebtoken";
 import { readDB, verifyJWT, writeDB } from "../../misc";
 import { v4 as uuid } from "uuid";
+import chalk from "chalk";
 require("dotenv").config();
 
 const addTodo = async (): Promise<void> => {
@@ -14,9 +14,11 @@ const addTodo = async (): Promise<void> => {
 
     const index = Users.findIndex((user) => user.email === payload.email);
 
-    if (index === -1) return console.log("No user in the db");
+    if (index === -1) return console.log(chalk.red.bold("No user in the db"));
 
-    const todo = readlineSync.question("Enter a todo you want to add: ");
+    const todo = readlineSync.question(
+      chalk.blue("Enter a todo you want to add: ")
+    );
     console.log();
     if (!Users[index].todo) Users[index].todo = [];
     const id = uuid();
@@ -25,9 +27,9 @@ const addTodo = async (): Promise<void> => {
       todo,
     });
     await writeDB(Users);
-    console.log("Todo added in the db, with id " + id);
+    console.log(chalk.magenta("Todo added in the db, with id " + id));
   } catch (err) {
-    console.log(err.message);
+    console.log(chalk.red.bold(err.message));
   }
 };
 export default addTodo;
