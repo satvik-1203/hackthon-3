@@ -2,7 +2,6 @@ import { IUser } from "../../interface";
 import { signUpInputs } from "../../misc";
 import bcrypt from "bcrypt";
 import chalk from "chalk";
-require("dotenv").config();
 import { readFile, writeFile } from "fs/promises";
 import { dataBase } from "../../BASEURL";
 

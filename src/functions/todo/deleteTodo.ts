@@ -4,7 +4,6 @@ import chalk from "chalk";
 import { readFile, writeFile } from "fs/promises";
 import { dataBase } from "../../BASEURL";
 import { IUser } from "../../interface";
-require("dotenv").config();
 
 export default async (): Promise<void> => {
   try {

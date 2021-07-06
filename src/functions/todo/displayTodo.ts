@@ -4,8 +4,6 @@ import { dataBase } from "../../BASEURL";
 import { IUser } from "../../interface";
 import { verifyJWT } from "../../misc";
 
-require("dotenv").config();
-
 export default async (): Promise<void> => {
   try {
     const payload = verifyJWT();

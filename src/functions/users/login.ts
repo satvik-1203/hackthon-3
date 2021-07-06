@@ -6,7 +6,6 @@ import { readFile } from "fs/promises";
 import { dataBase } from "../../BASEURL";
 import { IUser } from "../../interface";
 import config from "config";
-require("dotenv").config();
 
 const login = async (): Promise<void> => {
   try {

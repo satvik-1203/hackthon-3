@@ -2,7 +2,6 @@ import chalk from "chalk";
 import config from "config";
 import jwt from "jsonwebtoken";
 import readlineSync from "readline-sync";
-require("dotenv").config();
 
 export default (): any | void => {
   try {
