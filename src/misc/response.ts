@@ -1,25 +1,36 @@
 import { userFunc, todoFunc } from "../functions";
-const { createAccount, login, deleteUser } = userFunc;
+const { createAccount, login, deleteUser, allUsers } = userFunc;
 const { addTodo, displayTodo, deleteTodo, updateTodo, selectTodo } = todoFunc;
 
 export default async (optionNo: number): Promise<void> => {
   console.clear();
   switch (optionNo) {
     case 1:
-      return await createAccount();
+      await createAccount();
+      break;
     case 2:
-      return await login();
+      await login();
+      break;
     case 3:
-      return await deleteUser();
+      await deleteUser();
+      break;
     case 4:
-      return await selectTodo();
+      await selectTodo();
+      break;
     case 5:
-      return await addTodo();
+      await addTodo();
+      break;
     case 6:
-      return await deleteTodo();
+      await deleteTodo();
+      break;
     case 7:
-      return await updateTodo();
+      await updateTodo();
+      break;
     case 8:
-      return await displayTodo();
+      await displayTodo();
+      break;
+    case 9:
+      await allUsers();
+      break;
   }
 };

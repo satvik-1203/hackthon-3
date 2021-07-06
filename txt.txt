@@ -1,7 +1,4 @@
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVAZy5jb20iLCJpYXQiOjE2MjUyODA2NjUsImV4cCI6MTYyNTI4NDI2NX0.GaRe7OsDsL7XiWqqNUphChjSYJI1glYUAIixT8rkrJM
-// write db catch, readDB, switch case break
-// has to be config, env only used for system variables,
-// all users and clt
-
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXNoQGdtYWlsLmNvbSIsImlhdCI6MTYyNTQ4ODIzMCwiZXhwIjoxNjI1NDkxODMwfQ.Pt4JIDvYdan2qQHcJVMRCI8xcbLzdkjuiT8QxlKhzrs
-79c38a60-f7a3-4f07-a44a-ba2de0d5fcaf
+// write db catch, readDB, switch case break => done
+// has to be config, env only used for system variables, => done
+// all users and clt => done
+// Change Users to users

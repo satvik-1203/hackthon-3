@@ -1,8 +1,10 @@
 import { IUser } from "../../interface";
-import { readDB, signUpInputs, writeDB } from "../../misc";
+import { signUpInputs } from "../../misc";
 import bcrypt from "bcrypt";
 import chalk from "chalk";
 require("dotenv").config();
+import { readFile, writeFile } from "fs/promises";
+import { dataBase } from "../../BASEURL";
 
 const createAccount = async (): Promise<void> => {
   try {
@@ -22,18 +24,17 @@ const createAccount = async (): Promise<void> => {
       email,
       password,
     };
+    const data = await readFile(dataBase, "utf-8");
+    if (!data) return;
+    const users: IUser[] = JSON.parse(data);
 
-    const Users = await readDB();
-
-    if (!Users) return;
-
-    const exist = Users.find((user) => user.email === email);
+    const exist = users.find((user) => user.email === email);
     if (exist) {
       console.log(chalk.red.bold("Email already exist, Please try again...\n"));
       return createAccount();
     }
-    Users.push(userInfo);
-    await writeDB(Users);
+    users.push(userInfo);
+    await writeFile(dataBase, JSON.stringify(data));
     console.log(chalk.magenta("User account created in the database "));
   } catch (err) {
     console.error(chalk.red.bold(err));

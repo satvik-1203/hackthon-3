@@ -7,7 +7,16 @@ async function main() {
     cliMenu();
     let optionNo = option();
     if (optionNo === 0) return console.log(chalk.magenta("Exiting..."));
+
+    //
+
     await response(optionNo);
+    // I need to keep await here cuz we are using an async function,
+    //so generally that would stay in the event loop and again would go to the event queue.
+    // but removed return cuz that would disturb the call stack unnecessarily.
+
+    //
+
     const again = readlineSync.keyInYNStrict(
       chalk.cyan.bold("\nDo you want to continue: ")
     );

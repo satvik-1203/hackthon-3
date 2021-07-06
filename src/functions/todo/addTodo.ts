@@ -1,17 +1,20 @@
 import readlineSync from "readline-sync";
-import { readDB, verifyJWT, writeDB } from "../../misc";
+import { verifyJWT } from "../../misc";
 import { v4 as uuid } from "uuid";
 import chalk from "chalk";
+import { readFile, writeFile } from "fs/promises";
+import { dataBase } from "../../BASEURL";
+import { IUser } from "../../interface";
 
 const addTodo = async (): Promise<void> => {
   try {
     console.log();
     const payload: any = verifyJWT();
     if (!payload) return;
-    const Users = await readDB();
-    if (!Users) return;
-
-    const index = Users.findIndex((user) => user.email === payload.email);
+    const data = await readFile(dataBase, "utf-8");
+    if (!data) return;
+    const users: IUser[] = JSON.parse(data);
+    const index = users.findIndex((user) => user.email === payload.email);
 
     if (index === -1) return console.log(chalk.red.bold("No user in the db"));
 
@@ -19,13 +22,13 @@ const addTodo = async (): Promise<void> => {
       chalk.blue("Enter a todo you want to add: ")
     );
     console.log();
-    if (!Users[index].todo) Users[index].todo = [];
+    if (!users[index].todo) users[index].todo = [];
     const id = uuid();
-    Users[index].todo?.push({
+    users[index].todo?.push({
       id,
       todo,
     });
-    await writeDB(Users);
+    await writeFile(dataBase, JSON.stringify(data));
     console.log(chalk.magenta("Todo added in the db, with id " + id));
   } catch (err) {
     console.log(chalk.red.bold(err.message));

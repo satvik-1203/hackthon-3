@@ -6,6 +6,6 @@ export default (): number => {
     chalk.blueBright("Choose an options from the following: ")
   );
   console.log();
-  if (answer < 0 || answer > 8) throw "";
+  if (answer < 0 || answer > 9) throw "";
   return answer;
 };

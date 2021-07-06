@@ -11,6 +11,7 @@ export default (): void => {
     "Delete Todo",
     "Update Todo",
     "View Todo List",
+    "All Users",
   ];
   console.log(
     "      " + chalk.bgBlack.white("                                  ")

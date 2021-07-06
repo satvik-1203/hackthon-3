@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import config from "config";
 import jwt from "jsonwebtoken";
 import readlineSync from "readline-sync";
 require("dotenv").config();
@@ -8,9 +9,8 @@ export default (): any | void => {
     const token = readlineSync.question(
       chalk.green("Please enter your token: ")
     );
-    const signature = process.env["JWT-SIGN"];
-    if (!signature) return console.log("NO signature");
-    const payload = jwt.verify(token, signature);
+    const key: any = config.get("JWT-SIGN");
+    const payload = jwt.verify(token, key);
     return payload;
   } catch (err) {
     console.log(chalk.red.bold("\ninvalid credentials"));
