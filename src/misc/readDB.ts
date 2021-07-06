@@ -2,7 +2,7 @@ import { IUser } from "../interface";
 import { readFile } from "fs/promises";
 import { dataBase } from "../BASEURL";
 import chalk from "chalk";
-export default async (): Promise<void | IUser[]> => {
+export default async () => {
   try {
     const data = await readFile(dataBase, "utf-8");
     if (!data) return;

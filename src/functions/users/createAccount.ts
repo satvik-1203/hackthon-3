@@ -13,8 +13,7 @@ const createAccount = async (): Promise<void> => {
     }
     console.log();
 
-    const saltRound = process.env["HashLength"];
-    if (!saltRound) return console.log("No Hash Length");
+    const saltRound = 10;
     const salt = await bcrypt.genSalt(+saltRound);
     password = await bcrypt.hash(password, salt);
 

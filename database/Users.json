@@ -1,1 +1,8 @@
-[{"name":"name","email":"e@g.com","password":"$2b$10$H33wmPMXR17f5x6je0a6MuYh6Tz4clTBJI9p9dyZp.fvNldn8rgRW","todo":[]}]
+[
+  {
+    "name": "name",
+    "email": "e@g.com",
+    "password": "$2b$10$H33wmPMXR17f5x6je0a6MuYh6Tz4clTBJI9p9dyZp.fvNldn8rgRW",
+    "todo": []
+  }
+]

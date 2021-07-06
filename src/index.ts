@@ -2,9 +2,9 @@ import { cliMenu, option, response } from "./misc";
 import readlineSync from "readline-sync";
 import chalk from "chalk";
 async function main() {
-  console.clear();
-  cliMenu();
   try {
+    console.clear();
+    cliMenu();
     let optionNo = option();
     if (optionNo === 0) return console.log(chalk.magenta("Exiting..."));
     await response(optionNo);

@@ -2,7 +2,6 @@ import readlineSync from "readline-sync";
 import { readDB, verifyJWT, writeDB } from "../../misc";
 import { v4 as uuid } from "uuid";
 import chalk from "chalk";
-require("dotenv").config();
 
 const addTodo = async (): Promise<void> => {
   try {

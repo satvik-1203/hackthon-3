@@ -15,7 +15,7 @@ export default async (): Promise<void> => {
     const userIndex = Users.findIndex((user) => user.email === payload.email);
     const user = Users[userIndex];
     if (!user.todo || user.todo.length === 0)
-      return console.log(chalk.hex("FE5663")("No todo for deleting"));
+      return console.log(chalk.hex("FE5663")("No todo for deleting")); // useless
     const deletedTodo = user.todo.filter((todo) => todo.id !== id);
     if (deletedTodo.length === user.todo.length)
       return console.log(chalk.red.bold("Invalid todo ID"));

@@ -14,7 +14,7 @@ export default async () => {
     const user = Users[Users.findIndex((user) => user.email === payload.email)];
     if (!user.todo)
       return console.log(chalk.redBright.bold("User has no task"));
-    const todoIndex = user.todo?.findIndex((todo) => todo.id === id);
+    const todoIndex = user.todo.findIndex((todo) => todo.id === id);
     if (todoIndex === -1)
       return console.log(chalk.bgRedBright.bold("No todo found with that id"));
     const updatedTodo = readlineSync.question(
